@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1F3A">
+<title>工程类注册执业资格考证专题讲座</title>
+<script>document.documentElement.className += ' js';</script>
+<script defer src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+:root{
+  --navy1:#0B1F3A; --navy2:#123A6B; --gold:#D4AF37; --goldL:#F0D98A;
+  --text:rgba(255,255,255,.86); --muted:rgba(255,255,255,.58);
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC",Arial,sans-serif;
+  background:#050E1C; color:var(--text); overflow:hidden;
+  -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:transparent;
+  display:flex; justify-content:center;
+}
+a{color:var(--goldL);text-decoration:none}
+/* ============ 滚动容器 ============ */
+.deck{
+  position:relative; width:100%; max-width:750px;
+  height:100vh; height:100dvh;
+  overflow-y:auto; overflow-x:hidden;
+  scroll-snap-type:y mandatory; overscroll-behavior-y:contain;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  background-color:var(--navy1);
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(rgba(212,175,55,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,175,55,.055) 1px,transparent 1px),
+    radial-gradient(130% 72% at 50% 0%,rgba(30,86,150,.55),transparent 72%),
+    linear-gradient(165deg,#0B1F3A 0%,#0E2A53 48%,#123A6B 100%);
+  background-size:26px 26px,26px 26px,130px 130px,130px 130px,100% 100%,100% 100%;
+  box-shadow:0 0 70px rgba(0,0,0,.6);
+}
+.deck::-webkit-scrollbar{display:none}
+/* ============ 分屏 ============ */
+.screen{
+  position:relative; min-height:100vh; min-height:100dvh;
+  scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center;
+  padding:52px 24px 96px; overflow:hidden;
+}
+.screen::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;
+  border:1px solid rgba(212,175,55,.07);top:-130px;right:-150px;pointer-events:none}
+.wm{position:absolute;top:22px;right:18px;font:700 clamp(62px,17vw,118px)/1 "Bahnschrift","DIN Alternate",Arial,sans-serif;
+  color:rgba(212,175,55,.055);letter-spacing:-.04em;pointer-events:none;user-select:none}
+/* ============ 通用排版 ============ */
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.22em;color:var(--gold)}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--gold)}
+.sec-title{margin:12px 0 0;color:#fff;font-weight:800;font-size:clamp(25px,7vw,38px);
+  line-height:1.34;letter-spacing:.01em;text-shadow:0 4px 20px rgba(0,0,0,.3)}
+.gold-bar{width:44px;height:3px;margin-top:14px;border-radius:2px;
+  background:linear-gradient(90deg,var(--gold),rgba(212,175,55,0))}
+.sec-sub{margin:12px 0 0;color:var(--muted);font-size:clamp(12px,3.2vw,15px);letter-spacing:.06em}
+/* ============ 玻璃卡片 ============ */
+.glass{position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
+  border-radius:14px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 10px 30px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.06)}
+.glass::before{content:"";position:absolute;left:18px;top:0;width:30px;height:2px;
+  border-radius:2px;background:linear-gradient(90deg,var(--goldL),var(--gold))}
+/* ============ 入场动效 ============ */
+.js .reveal{opacity:0;transform:translateY(22px);
+  transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .screen.active .reveal{opacity:1;transform:none}
+@keyframes up{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5}
+  50%{transform:rotate(45deg) translate(-3px,-3px);opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 6px 18px rgba(212,175,55,.28)}
+  50%{transform:scale(1.025);box-shadow:0 8px 26px rgba(212,175,55,.5)}}
+/* ============ 第1屏 封面 ============ */
+.cover{text-align:center}
+.cover .eyebrow{justify-content:center}
+.cover .eyebrow::after{content:"";width:18px;height:1px;background:var(--gold)}
+.emblem{margin:24px auto 20px;width:clamp(104px,29vw,148px);height:clamp(104px,29vw,148px)}
+.emblem svg{width:100%;height:100%;display:block}
+.cover-title{margin:0;color:#fff;font-weight:800;font-size:clamp(30px,9vw,52px);
+  line-height:1.3;letter-spacing:.02em;text-shadow:0 4px 24px rgba(0,0,0,.35)}
+.cover-title span{color:var(--goldL)}
+.cover-rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:20px auto 0}
+.cover-rule i{display:block;width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.cover-rule i:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+.cover-rule b{width:7px;height:7px;transform:rotate(45deg);background:var(--gold)}
+.tagline{margin:18px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:540px}
+.tagline span{border:1px solid rgba(212,175,55,.42);color:var(--goldL);background:rgba(212,175,55,.07);
+  padding:7px 12px;border-radius:20px;font-size:clamp(11px,3vw,13px);letter-spacing:.03em}
+.swipe-hint{position:absolute;bottom:88px;left:0;right:0;text-align:center;
+  color:rgba(255,255,255,.6);font-size:12px;letter-spacing:.16em}
+.swipe-hint .chev{display:block;margin:9px auto 0;width:11px;height:11px;
+  border-left:1.5px solid var(--gold);border-top:1.5px solid var(--gold);
+  transform:rotate(45deg);animation:up 1.8s ease-in-out infinite}
+/* ============ 第2屏 痛点 ============ */
+.body-card{margin-top:24px;padding:22px 20px}
+.body-card .quote{font:700 46px/1 Georgia,serif;color:rgba(212,175,55,.55);height:30px}
+.body-card p{margin:6px 0 0;font-size:clamp(13.5px,3.8vw,16px);line-height:2;color:var(--text)}
+.keyrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.keyrow span{font-size:11px;letter-spacing:.08em;color:var(--goldL);
+  border:1px solid rgba(212,175,55,.35);border-radius:6px;padding:5px 10px;background:rgba(212,175,55,.06)}
+/* ============ 第3屏 价值 ============ */
+.value-list{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+.value-item{display:flex;align-items:center;gap:14px;padding:16px 16px}
+.chk{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#F0D98A,#D4AF37);color:#0B1F3A;font-weight:900;font-size:15px;
+  box-shadow:0 3px 10px rgba(212,175,55,.3)}
+.value-item p{margin:0;font-size:clamp(13px,3.6vw,15px);line-height:1.65;color:#fff}
+.conclusion{margin-top:16px;padding:16px 18px;border-color:rgba(212,175,55,.32);
+  background:rgba(212,175,55,.09);color:var(--goldL);font-size:clamp(12.5px,3.4vw,14.5px);
+  line-height:1.85;text-align:center}
+/* ============ 第4屏 总览 ============ */
+.grid4{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ov-card{padding:20px 18px;min-height:132px;display:flex;flex-direction:column;justify-content:center}
+.ov-card .num{font-size:26px;line-height:1;color:var(--goldL);font-weight:700}
+.ov-card h3{margin:12px 0 0;color:#fff;font-size:clamp(17px,4.6vw,22px);font-weight:700;letter-spacing:.04em}
+.ov-card .en{margin-top:8px;font-size:10px;letter-spacing:.24em;color:rgba(212,175,55,.7)}
+/* ============ 第5屏 详情 ============ */
+.grid2{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dt-card{padding:16px 14px}
+.dt-card h3{margin:0 0 12px;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px}
+.dt-card h3 em{font-style:normal;width:20px;height:20px;flex:none;display:grid;place-items:center;
+  border-radius:5px;background:rgba(212,175,55,.16);border:1px solid rgba(212,175,55,.42);
+  color:var(--goldL);font-size:11px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:11px;line-height:1.5;padding:4px 7px;border-radius:6px;white-space:nowrap;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.84)}
+/* ============ 第6屏 嘉宾 ============ */
+.speakers{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+.sp-card{display:flex;align-items:center;gap:14px;padding:14px}
+.avatar{width:76px;height:76px;flex:none;border-radius:50%;object-fit:cover;object-position:center 30%;
+  border:3px solid rgba(255,255,255,.55);background:rgba(255,255,255,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.4),0 0 0 1px rgba(212,175,55,.45)}
+.sp-info{min-width:0}
+.sp-idx{font-size:10px;letter-spacing:.18em;color:var(--gold)}
+.sp-name{margin-top:4px;font-size:16px;font-weight:800;color:#fff;white-space:nowrap}
+.sp-title{margin-top:4px;display:inline-block;font-size:11px;color:var(--goldL);
+  border:1px solid rgba(212,175,55,.45);background:rgba(212,175,55,.09);
+  border-radius:20px;padding:2px 9px}
+.sp-desc{margin:7px 0 0;font-size:11px;line-height:1.65;color:var(--muted)}
+/* ============ 第7屏 时间/二维码 ============ */
+.time-card{margin-top:20px;padding:16px;text-align:center}
+.t-label{font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.t-value{margin-top:8px;color:#fff;font-size:clamp(15px,4.4vw,21px);font-weight:700;line-height:1.6}
+.t-value b{color:var(--goldL);font-size:clamp(20px,5.6vw,26px)}
+.addr{margin:14px 0 0;text-align:center;font-size:12px;color:var(--muted);word-break:break-all;line-height:1.7}
+.addr a{border-bottom:1px dashed rgba(212,175,55,.6);padding-bottom:1px}
+.qr-wrap{margin:16px auto 0;min-height:176px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center}
+.qr-box{display:inline-block;background:#fff;padding:10px;border-radius:14px;
+  box-shadow:0 10px 32px rgba(0,0,0,.32),0 0 0 1px rgba(212,175,55,.6)}
+#qrcode{width:152px;height:152px}
+#qrcode canvas{display:block}
+.qr-fallback{display:none;max-width:300px;padding:18px;border-radius:12px;text-align:center;
+  background:rgba(255,255,255,.06);border:1px dashed rgba(212,175,55,.55);
+  font-size:13px;line-height:1.9;color:var(--text)}
+.qr-fallback a{word-break:break-all;border-bottom:1px solid rgba(212,175,55,.6)}
+.btn-gold{display:block;width:min(100%,320px);margin:16px auto 0;padding:14px 20px;
+  text-align:center;text-decoration:none;color:#1B1405;font-weight:800;font-size:16px;
+  letter-spacing:.08em;border-radius:30px;
+  background:linear-gradient(135deg,#F3DE96 0%,#D4AF37 48%,#B78C25 100%);
+  animation:pulse 2.6s ease-in-out infinite}
+.qr-tip{margin:12px 0 0;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.04em}
+/* ============ 页码圆点 + 底栏 ============ */
+.dots{position:fixed;bottom:calc(58px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
+  z-index:29;display:flex;gap:7px;align-items:center;padding:7px 10px;border-radius:20px;
+  background:rgba(5,14,28,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.dots i{display:block;width:6px;height:6px;border-radius:6px;background:rgba(255,255,255,.32);
+  transition:width .3s ease,background .3s ease,box-shadow .3s ease}
+.dots i.on{width:18px;background:linear-gradient(90deg,var(--goldL),var(--gold));
+  box-shadow:0 0 8px rgba(212,175,55,.55)}
+.footbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:750px;
+  z-index:30;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:0 18px;padding-bottom:env(safe-area-inset-bottom);
+  background:rgba(5,14,28,.72);border-top:1px solid rgba(212,175,55,.28);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  font-size:11.5px;letter-spacing:.05em;color:rgba(255,255,255,.7)}
+.footbar .ft{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.footbar .pn{flex:none;color:var(--goldL);font-size:13px;font-variant-numeric:tabular-nums}
+.footbar .pn b{color:#fff;font-weight:800}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ========== 第1屏 封面 ========== -->
+  <section class="screen" data-index="0">
+    <div class="wm">01</div>
+    <div class="cover">
+      <div class="eyebrow reveal" style="--d:.05s">ENGINEERING CERTIFICATION · 2026</div>
+      <div class="emblem reveal" style="--d:.12s">
+        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><linearGradient id="goldg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F0D98A"/><stop offset="1" stop-color="#D4AF37"/>
+          </linearGradient></defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="url(#goldg)" stroke-opacity=".65" stroke-width="1.2"/>
+          <circle cx="70" cy="70" r="57" fill="none" stroke="#D4AF37" stroke-opacity=".28" stroke-width="1" stroke-dasharray="3 5"/>
+          <circle cx="70" cy="70" r="44" fill="none" stroke="#D4AF37" stroke-opacity=".14" stroke-width="1"/>
+          <path d="M70 4v12M70 124v12M4 70h12M124 70h12" stroke="#D4AF37" stroke-opacity=".7" stroke-width="1.4"/>
+          <path d="M44 100V56l26-16 26 16v44" fill="none" stroke="url(#goldg)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M38 100h64" stroke="url(#goldg)" stroke-width="2"/>
+          <path d="M70 40v60M44 68h52M44 84h52" stroke="#D4AF37" stroke-opacity=".42" stroke-width="1"/>
+          <rect x="52" y="58" width="8" height="8" fill="none" stroke="url(#goldg)" stroke-width="1.2"/>
+          <rect x="80" y="58" width="8" height="8" fill="none" stroke="url(#goldg)" stroke-width="1.2"/>
+          <rect x="52" y="74" width="8" height="8" fill="none" stroke="url(#goldg)" stroke-width="1.2"/>
+          <rect x="80" y="74" width="8" height="8" fill="none" stroke="url(#goldg)" stroke-width="1.2"/>
+          <path d="M62 100V88h16v12" fill="none" stroke="url(#goldg)" stroke-width="1.4"/>
+          <path d="M34 107h72M34 104v6M106 104v6" stroke="#D4AF37" stroke-opacity=".55" stroke-width="1"/>
+        </svg>
+      </div>
+      <h1 class="cover-title reveal" style="--d:.2s">工程类注册执业资格<br><span>考证专题讲座</span></h1>
+      <div class="cover-rule reveal" style="--d:.28s"><i></i><b></b><i></i></div>
+      <div class="tagline reveal" style="--d:.34s">
+        <span>紧扣命题趋势</span><span>直击考试精髓</span><span>提升备考效率</span>
+      </div>
+    </div>
+    <div class="swipe-hint reveal" style="--d:.5s">向上滑动查看详情<span class="chev"></span></div>
+  </section>
+
+  <!-- ========== 第2屏 痛点引入 ========== -->
+  <section class="screen" data-index="1">
+    <div class="wm">02</div>
+    <div class="eyebrow reveal" style="--d:.05s">备考痛点 · 01</div>
+    <h2 class="sec-title reveal" style="--d:.12s">备考时间紧，<br>如何高效提分？</h2>
+    <div class="gold-bar reveal" style="--d:.18s"></div>
+    <div class="glass body-card reveal" style="--d:.26s">
+      <div class="quote">“</div>
+      <p>造价师、建造师考试即将开始。备考时间紧迫，如何在短时间内有针对性地复习，全面、系统地吃透各门课程学习要点，最大限度地提高考试成绩，是广大考生最关心的话题。</p>
+    </div>
+    <div class="keyrow reveal" style="--d:.36s">
+      <span>时间紧</span><span>任务重</span><span>考点多</span><span>需系统突破</span>
+    </div>
+  </section>
+
+  <!-- ========== 第3屏 讲座价值 ========== -->
+  <section class="screen" data-index="2">
+    <div class="wm">03</div>
+    <div class="eyebrow reveal" style="--d:.05s">讲座价值 · 02</div>
+    <h2 class="sec-title reveal" style="--d:.12s">这场讲座<br>能帮你解决什么</h2>
+    <div class="gold-bar reveal" style="--d:.18s"></div>
+    <div class="value-list">
+      <div class="glass value-item reveal" style="--d:.26s"><span class="chk">✓</span><p>详细介绍考试相关内容，理清备考方向</p></div>
+      <div class="glass value-item reveal" style="--d:.34s"><span class="chk">✓</span><p>总结一整套备考方法与应试技巧</p></div>
+      <div class="glass value-item reveal" style="--d:.42s"><span class="chk">✓</span><p>针对重点、难点和易失分考点，以专题讲座形式精讲</p></div>
+    </div>
+    <div class="glass conclusion reveal" style="--d:.5s">帮助考生领悟考试要领，掌握考试要点，最大限度提高考试成绩。</div>
+  </section>
+
+  <!-- ========== 第4屏 讲座内容总览 ========== -->
+  <section class="screen" data-index="3">
+    <div class="wm">04</div>
+    <div class="eyebrow reveal" style="--d:.05s">内容总览 · 03</div>
+    <h2 class="sec-title reveal" style="--d:.12s">讲座内容</h2>
+    <div class="gold-bar reveal" style="--d:.18s"></div>
+    <p class="sec-sub reveal" style="--d:.24s">工程类执业资格考证——内容、方法、技巧</p>
+    <div class="grid4">
+      <div class="glass ov-card reveal" style="--d:.3s"><span class="num">①</span><h3>考证内容</h3><span class="en">CONTENT</span></div>
+      <div class="glass ov-card reveal" style="--d:.38s"><span class="num">②</span><h3>学习方法</h3><span class="en">METHOD</span></div>
+      <div class="glass ov-card reveal" style="--d:.46s"><span class="num">③</span><h3>考试技巧</h3><span class="en">SKILLS</span></div>
+      <div class="glass ov-card reveal" style="--d:.54s"><span class="num">④</span><h3>答疑交流</h3><span class="en">Q &amp; A</span></div>
+    </div>
+  </section>
+
+  <!-- ========== 第5屏 内容详情 ========== -->
+  <section class="screen" data-index="4">
+    <div class="wm">05</div>
+    <div class="eyebrow reveal" style="--d:.05s">内容详情 · 04</div>
+    <h2 class="sec-title reveal" style="--d:.12s">内容详情</h2>
+    <div class="gold-bar reveal" style="--d:.18s"></div>
+    <p class="sec-sub reveal" style="--d:.24s">四大板块 · 逐一精讲</p>
+    <div class="grid2">
+      <div class="glass dt-card reveal" style="--d:.3s">
+        <h3><em>一</em>考证内容</h3>
+        <div class="tags"><span>资格简介</span><span>报考条件</span><span>科目设置</span><span>题型题量</span><span>报名时间</span><span>成绩管理</span></div>
+      </div>
+      <div class="glass dt-card reveal" style="--d:.38s">
+        <h3><em>二</em>学习方法</h3>
+        <div class="tags"><span>学习纲领</span><span>复习安排</span><span>听课方法</span></div>
+      </div>
+      <div class="glass dt-card reveal" style="--d:.46s">
+        <h3><em>三</em>考试技巧</h3>
+        <div class="tags"><span>答题技巧</span><span>出题总结</span><span>考前提醒</span></div>
+      </div>
+      <div class="glass dt-card reveal" style="--d:.54s">
+        <h3><em>四</em>答疑交流</h3>
+        <div class="tags"><span>集中解答备考疑问</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 第6屏 主讲嘉宾阵容 ========== -->
+  <section class="screen" data-index="5">
+    <div class="wm">06</div>
+    <div class="eyebrow reveal" style="--d:.05s">主讲嘉宾 · 05</div>
+    <h2 class="sec-title reveal" style="--d:.12s">主讲嘉宾</h2>
+    <div class="gold-bar reveal" style="--d:.18s"></div>
+    <p class="sec-sub reveal" style="--d:.24s">工程类考证资深导师 · 联袂开讲</p>
+    <div class="speakers">
+      <div class="glass sp-card reveal" style="--d:.3s">
+        <img class="avatar" src="演讲者1.jpeg" alt="资深考培专家">
+        <div class="sp-info">
+          <div class="sp-idx">嘉宾 01</div>
+          <div class="sp-name">资深考培专家</div>
+          <div class="sp-title">资深考培专家</div>
+          <p class="sp-desc">工程类考证资深导师，长期深耕执业资格考前培训，善于梳理命题脉络与备考方向。</p>
+        </div>
+      </div>
+      <div class="glass sp-card reveal" style="--d:.4s">
+        <img class="avatar" src="演讲者2.webp" alt="行业领军名师">
+        <div class="sp-info">
+          <div class="sp-idx">嘉宾 02</div>
+          <div class="sp-name">资深考培专家</div>
+          <div class="sp-title">行业领军名师</div>
+          <p class="sp-desc">工程类考证资深导师，主讲科目通过率领先，精于重点、难点拆解与应试训练。</p>
+        </div>
+      </div>
+      <div class="glass sp-card reveal" style="--d:.5s">
+        <img class="avatar" src="演讲者3.webp" alt="金牌讲师">
+        <div class="sp-info">
+          <div class="sp-idx">嘉宾 03</div>
+          <div class="sp-name">资深考培专家</div>
+          <div class="sp-title">金牌讲师</div>
+          <p class="sp-desc">工程类考证资深导师，授课条理清晰，帮助考生构建系统化备考框架。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 第7屏 时间地址与行动入口 ========== -->
+  <section class="screen" data-index="6">
+    <div class="wm">07</div>
+    <div class="eyebrow reveal" style="--d:.05s">时间地址 · 06</div>
+    <h2 class="sec-title reveal" style="--d:.12s">讲座时间</h2>
+    <div class="gold-bar reveal" style="--d:.18s"></div>
+    <div class="glass time-card reveal" style="--d:.24s">
+      <div class="t-label">LECTURE TIME</div>
+      <div class="t-value">2026年12月18日（周五）<br><b>19:30—21:00</b></div>
+    </div>
+    <p class="addr reveal" style="--d:.3s">观看地址：<a href="https://live.polyn.cn/watch/10000" target="_blank" rel="noopener noreferrer">https://live.polyn.cn/watch/10000</a></p>
+    <div class="qr-wrap">
+      <div class="qr-box reveal" id="qrBox" style="--d:.36s"><div id="qrcode"></div></div>
+      <div class="qr-fallback" id="qrFallback">
+        二维码加载失败，请点击观看地址<br>
+        <a href="https://live.polyn.cn/watch/10000" target="_blank" rel="noopener noreferrer">https://live.polyn.cn/watch/10000</a>
+      </div>
+    </div>
+    <a class="btn-gold reveal" style="--d:.44s" href="https://live.polyn.cn/watch/10000" target="_blank" rel="noopener noreferrer">进入直播间</a>
+    <p class="qr-tip reveal" style="--d:.52s">长按识别二维码 / 点击按钮进入直播间</p>
+  </section>
+
+</div>
+
+<!-- 页码圆点 -->
+<div class="dots" id="dots">
+  <i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i>
+</div>
+
+<!-- 底部固定小条 -->
+<div class="footbar">
+  <span class="ft">工程类注册执业资格考证专题讲座</span>
+  <span class="pn"><b id="cur">1</b>/7</span>
+</div>
+
+<script>
+(function(){
+  var deck = document.getElementById('deck');
+  var screens = [].slice.call(deck.querySelectorAll('.screen'));
+  var dots = [].slice.call(document.querySelectorAll('#dots i'));
+  var cur = document.getElementById('cur');
+  var current = 0;
+
+  function setPage(i){
+    i = Math.max(0, Math.min(screens.length - 1, i));
+    if(i === current) return;
+    current = i;
+    cur.textContent = String(i + 1);
+    dots.forEach(function(d,k){ d.classList.toggle('on', k === i); });
+  }
+
+  /* 滚动脉冲式页码更新 */
+  var ticking = false;
+  deck.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      setPage(Math.round(deck.scrollTop / deck.clientHeight));
+      ticking = false;
+    });
+  }, {passive:true});
+
+  /* 每屏进入时淡入上移 */
+  screens[0].classList.add('active');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ e.target.classList.toggle('active', e.isIntersecting); });
+    }, {root:deck, threshold:0.45});
+    screens.forEach(function(s){ io.observe(s); });
+  }else{
+    screens.forEach(function(s){ s.classList.add('active'); });
+  }
+
+  /* 二维码：CDN 生成，失败显示可点击链接兜底 */
+  var LIVE_URL = 'https://live.polyn.cn/watch/10000';
+  var done = false;
+  function fallback(){
+    if(done) return;
+    done = true;
+    document.getElementById('qrBox').style.display = 'none';
+    document.getElementById('qrFallback').style.display = 'block';
+  }
+  function initQR(){
+    if(done) return;
+    if(typeof QRCode === 'undefined'){ fallback(); return; }
+    try{
+      var el = document.getElementById('qrcode');
+      el.innerHTML = '';
+      new QRCode(el, {
+        text: LIVE_URL, width: 152, height: 152,
+        colorDark: '#0B1F3A', colorLight: '#FFFFFF',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+      done = true;
+    }catch(err){ fallback(); }
+  }
+  document.addEventListener('DOMContentLoaded', initQR);
+  window.addEventListener('load', initQR);
+  setTimeout(function(){ if(!done) fallback(); }, 4500);
+})();
+</script>
+</body>
+</html>
